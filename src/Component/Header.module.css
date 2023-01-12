@@ -1,0 +1,41 @@
+.Nav{
+  display: flex;
+  position: sticky;
+  justify-content: space-between;
+   
+   background-color:transparent;
+  }
+  .links{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+  .mobile{
+    display: none
+  }
+  .navbarbrand{
+    color: brown;
+  }
+  @media screen and (max-width: 700px) {
+    .links{
+      display: none
+    }
+    .Nav{
+ padding: 5%;
+      }
+  
+  .mobile{
+    display: block
+  }
+  #Menu{
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 30%;
+    background-color: rgb(223, 213, 170);
+    justify-content: space-around;
+    position: absolute;
+    right: 10%;
+    align-items: center;
+  }
+  }
