@@ -2,8 +2,12 @@ import React from 'react';
 import RegisterStyle from "./Register.module.css"
 import { FaLock ,FaUserAlt} from "react-icons/fa";
 import { useEffect,useState } from "react";
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {Data} from "./Data.js"
 import Header from './Component/Header';
 import Footer from './Component/Footer';
+
+
 export default function Login() {
     const[password,setPassword]= useState("")
 const[username,setUsername]= useState("")
@@ -11,20 +15,20 @@ const[uMes,setUMes]= useState("")
 const[pwmessage,setPwMessage]= useState("")
 const[newArr,setNewArr]= useState([])
 const[newFilter,setNewFilter]= useState([])
+const[newData,setNewData]=useRecoilState(Data)
 
 let data;
 useEffect(()=> {
   if(localStorage.getItem("list") || []){
      data = JSON.parse(localStorage.getItem("list"))
      console.log(data)
-     setNewArr(data)
-          
+     setNewArr(data)   
   }
 },[])
 
   function capturepass(e){
     setPassword(e.target.value)
-    const pwRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,20}$/
+    const pwRegEx = /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?!.\s).{6,20}$/
 
     if (pwRegEx.test(password)) {
       setPwMessage("pw is Valid");
@@ -64,13 +68,20 @@ if(username=== ""){
    setNewFilter(newFilter)
    for (let i = 0; i < newFilter.length; i++) {
     if(newFilter[i].Username === username && newFilter[i].Password === password){
-        alert("You are logged in")
-    }else{
+    
+      alert("You are logged in")
+      
+     window.location.assign("/")
+
+        setNewData({...newData , isLogin:true})
+      }else{
         alert("New User You Can Register")
     }
    }
 }
   }
+  console.log(newData , "after login" )
+
     return(
         <>
       <Header />

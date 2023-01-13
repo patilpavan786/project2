@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-scroll";
 import price from "./Price.module.css"
-
+import { useRecoilState } from 'recoil';
+import {Data} from "./Data.js"
 // import "./Price.css";
 function Price() {
+  const[subscribe,setSubscribe]=useRecoilState(Data)
+  console.log(subscribe)
   return (
     <>
     <div id="price">
@@ -18,7 +20,13 @@ function Price() {
           <li>Free GYM ACESS</li>
           <li>24 HOUR ACESS</li>
        <div className={price.Link}> 
-        <button onClick={()=> alert("get started")} >Get Started</button>
+     { subscribe.isLogin===true ?  <button onClick={()=> 
+          alert("subscribed successfully")
+          } >Subscribed</button>
+          :  <button 
+          onClick={()=> 
+            alert("subscribed successfully")
+            }    >Subscribe</button>}
         </div>  
         </ul>
       
@@ -34,15 +42,21 @@ function Price() {
         <li>Free GYM ACESS</li>
         <li>24 HOUR ACESS</li>
      <div className={price.Link}> 
-     <button onClick={()=> alert("get started")} >Get Started</button>     
+     { subscribe.isLogin===true ?  <button onClick={()=> 
+          alert("subscribed successfully")
+          } >Subscribed</button>
+          :  <button 
+          onClick={()=> 
+            alert("subscribed successfully")
+            }    >Subscribe</button>}
       </div>  
       </ul>
       </div>
  
   <div className={price.innercontainer3}>
   <h6 style={{fontSize:"30px"}}>membership</h6>
-  <p style={{fontSize:"20px", color:"white"}}> atgym base we offer a wide range of memberships with option to <br/> suit Gold’s Gym offers world class equipment and amenities.  <br/>No matter what your capabilities & goals are,
-Gold’s Gym <br/>has everything you need to get the results you desire.
+  <p style={{fontSize:"20px", color:"white"}}> atgym base we offer a wide range of memberships with option to <br/> suit Golds Gym offers world class equipment and amenities.  <br/>No matter what your capabilities & goals are,
+Golds Gym <br/>has everything you need to get the results you desire.
 </p>
 <h4> Each plan included</h4>
 <ul>

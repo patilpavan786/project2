@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Component/Header";
 import Footer from "./Component/Footer";
 import home from "./Home.module.css";
@@ -10,6 +10,7 @@ import Program from "./Program";
 import MeetOurTeam from "./MeetOurTeam";
 
 function Home() {
+  const[isJoinUsClicked,setIsJoinUsClicked]= useState(false)
   return (
     <>
     <Header />
@@ -22,14 +23,16 @@ function Home() {
           it's the only place you <br />
           have to live."
         </h1>
-      <button >  <NavLink to="/Login" className={home.btn}>
-             Join with Us
-            </NavLink></button>
+      <button onClick={()=> setIsJoinUsClicked(!isJoinUsClicked)}>Join-With-Us</button>
+      {isJoinUsClicked && (
+        <div className="Button">
+           <NavLink to="/Login" className={home.btn}>LOGIN</NavLink>
+           <NavLink to="/Register" className={home.btn}>Register</NavLink>
+        </div>
+      )}
       </div> 
       </div>
       </div>
-    
-     
       <Program />
       <MeetOurTeam />
        <Price />
